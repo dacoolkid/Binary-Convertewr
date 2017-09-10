@@ -1,4 +1,5 @@
 	import java.awt.Frame;
+	
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Properties;
@@ -18,34 +19,47 @@ import javax.swing.JTextField;
 
 	
 public class Spamalot implements ActionListener{
+	JTextField question;
 	static final String FAKE_USERNAME = "51yummyyummyinmytummy15@gmail.com";
 	static final String FAKE_PASSWORD = "LemonadeIsYummy245";
 	String subject = "MYLEMONSNEEDTOBESQUEEZED";
 	String message = "PLEASESQUEEZEMYLEMONS";
 	JButton button = new JButton();
 	JButton button1 = new JButton();
-	public static void main(System[] args) {
+	public static void main(String[] args) {
+		
 	
 		Spamalot spam = new Spamalot();
 		spam.createUI();
 	}
+
+	
+
 private void createUI() {
 	Frame frame = new JFrame();
 	JPanel panel = new JPanel();
-	JTextField question = new JTextField(40);
-	question.setText("Phone Number");
+	
+	question = new JTextField(40);
+	frame.setVisible(true);
+	question.setText("EMAIL");
 	frame.add(panel);
 	panel.add(question);
 	panel.add(button);
 	panel.add(button1);
 	
-	button.setText("BAD");
+	button1.setText("BAD");
 	button.setText("GOOD");
+	
+	frame.pack();
+	
 }
 @Override
 public void actionPerformed(ActionEvent e) {
 	// TODO Auto-generated method stub
-	
+	if(e.getSource() == button) {
+	sendSpam(question.getText(), subject, message);
+	System.out.println(sendSpam);
+	}
 }
 
 private boolean sendSpam(String recipient, String subject, String content) {
@@ -79,4 +93,5 @@ return false;
 	}
 
 }
+
 
